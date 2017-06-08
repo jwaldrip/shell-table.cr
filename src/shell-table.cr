@@ -30,6 +30,18 @@ class ShellTable
     puts_bottom_border(io)
   end
 
+  def labels=(*args, **props)
+    @labels = Row.new(*args, **props)
+  end
+
+  def all_rows
+    ([labels] + rows).compact
+  end
+
+  def add_row(*args, **props)
+    Row.new(*args, **props).tap { |row| @rows << row }
+  end
+
   private def puts_labels(io : IO)
     return unless labels = @labels
     puts_row(io, labels)
@@ -96,18 +108,6 @@ class ShellTable
       end
     end
     io.puts line
-  end
-
-  def labels=(*args, **props)
-    @labels = Row.new(*args, **props)
-  end
-
-  def all_rows
-    ([labels] + rows).compact
-  end
-
-  def add_row(*args, **props)
-    Row.new(*args, **props).tap { |row| @rows << row }
   end
 end
 
