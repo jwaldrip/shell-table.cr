@@ -12,16 +12,12 @@ class ShellTable
 
   def initialize(rows : Array(Array(String)), labels : Array(String), label_color : Symbol? = nil)
     self.labels = labels
-    if l = self.labels
-      l.color = label_color
-    end
+    self.label_color = label_color
     rows.each { |columns| add_row columns }
   end
 
   def initialize(@rows, @labels = nil, label_color : Symbol? = nil)
-    if labels
-      labels.color = label_color
-    end
+    self.label_color = label_color
   end
 
   def to_s(io : IO)
@@ -33,6 +29,12 @@ class ShellTable
 
   def labels=(*args, **props)
     @labels = Row.new(*args, **props)
+  end
+
+  def label_color=(color : Symbol)
+    if l = self.labels
+      l.color = color
+    end
   end
 
   def all_rows
