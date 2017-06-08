@@ -5,6 +5,7 @@ class ShellTable
   property rows : Array(Row) = [] of Row
   property padding : Int32 = 1
   property border : Bool = true
+  property border_color : Symbol? = nil
 
   def initialize
   end
@@ -59,15 +60,15 @@ class ShellTable
     line = String.build do |str|
       max_columns.times do |col_index|
         column = row.columns[col_index]? || Column.new
-        str.print "║" if col_index == 0 && border
-        str.print "|" if col_index != 0
+        print_vertical_border(str, char = '║') if col_index == 0 && border
+        print_vertical_border(str, char = '|') if col_index != 0
         print_padding(str) if col_index != 0 || border
         value = column.value.to_s.ljust(max_column_size_at col_index)
         color = column.color || row.color
         value = value.colorize(color) if color
         str.print value
         print_padding(str)
-        str.print "║" if col_index == max_columns - 1 && border
+        print_vertical_border(str, char = '║') if col_index == max_columns - 1 && border
       end
     end
     io.puts line
@@ -83,6 +84,14 @@ class ShellTable
 
   private def puts_top_border(io)
     puts_border(io, left: "╔", right: "╗", line: "═", sep: "╦")
+  end
+
+  private def print_vertical_border(io, char = '|')
+    str = char.to_s
+    if border_color = @border_color
+      str = str.to_s.colorize(border_color)
+    end
+    io.print str
   end
 
   private def puts_bottom_border(io : IO)
@@ -106,6 +115,9 @@ class ShellTable
         str.print line * (max_column_size_at(col_index) + (padding * 2))
         str.print right if col_index == max_columns - 1
       end
+    end
+    if border_color = @border_color
+      line = line.to_s.colorize(border_color)
     end
     io.puts line
   end
