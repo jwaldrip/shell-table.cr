@@ -31,4 +31,4 @@ See the `/examples` folder for usage (for now)
 
 ## Contributors
 
-- [jwaldrip](https://github.com/jwaldrip) jwaldrip - creator, maintainer
+- [Jason Waldrip (jwaldrip)](https://github.com/jwaldrip) - creator, maintainer
