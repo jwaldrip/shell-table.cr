@@ -1,6 +1,6 @@
 # shell-table
 
-TODO: Write a description here
+Create tables in your shell.
 
 ## Installation
 
@@ -9,7 +9,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   shell-table:
-    github: [your-github-name]/shell-table
+    github: jwaldrip/shell-table.cr
 ```
 
 ## Usage
@@ -18,15 +18,12 @@ dependencies:
 require "shell-table"
 ```
 
-TODO: Write usage instructions here
+See the `/examples` folder for usage (for now)
 
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/shell-table/fork )
+1. Fork it (https://github.com/jwaldrip/shell-table/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -34,4 +31,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) jwaldrip - creator, maintainer
+- [jwaldrip](https://github.com/jwaldrip) jwaldrip - creator, maintainer
