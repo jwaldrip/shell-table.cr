@@ -10,7 +10,7 @@ class ShellTable
   def initialize
   end
 
-  def initialize(rows : Array(Array(String)), labels : Array(String), label_color : Symbol? = nil)
+  def initialize(rows, labels : Array(String), label_color : Symbol? = nil)
     self.labels = labels
     self.label_color = label_color
     rows.each { |columns| add_row columns }
@@ -65,7 +65,7 @@ class ShellTable
         print_vertical_border(str, char = '║') if col_index == 0 && border
         print_vertical_border(str, char = '|') if col_index != 0
         print_padding(str) if col_index != 0 || border
-        value = column.value.to_s.ljust(max_column_size_at col_index)
+        value = column.value.to_s.ljust(max_column_size_at(col_index) + column.ansi_delta)
         color = column.color || row.color
         value = value.colorize(color) if color
         str.print value
@@ -81,7 +81,7 @@ class ShellTable
   end
 
   private def max_column_size_at(index : Int32)
-    all_rows.map(&.columns[index]?.to_s.size).sort[-1]? || 0
+    all_rows.map(&.columns[index].not_nil!.size).sort[-1]? || 0
   end
 
   private def puts_top_border(io)
