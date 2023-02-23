@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe Shell::Table do
+describe ShellTable do
   # TODO: Write tests
 
   it "works" do
