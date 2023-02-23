@@ -27,8 +27,8 @@ class ShellTable
     puts_bottom_border(io)
   end
 
-  def labels=(labels)
-    @labels = Row.new(labels)
+  def labels=(args)
+    @labels = Row.new(args)
   end
 
   def label_color=(color : Symbol)
